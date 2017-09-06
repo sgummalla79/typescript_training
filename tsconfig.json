@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "alwaysStrict" : true,
+        "outDir": "scripts/js/"
+    },
+    "compileOnSave": true,
+    "include": [
+        "scripts/ts/*.ts"
+    ]
+}
