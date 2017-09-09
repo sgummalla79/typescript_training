@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "alwaysStrict" : true,
+        "outDir": "../scripts/js/",
+        "sourceMap": true,
+        "watch": true,
+        "target": "ES5"
+    },
+    "compileOnSave": true,
+    "include": [
+        "../scripts/ts/*.ts"
+    ]
+}
