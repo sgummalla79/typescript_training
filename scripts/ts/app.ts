@@ -1,24 +1,26 @@
-enum Category{Biography, Fiction, Children, History, Poetry};
+import {Category} from './enums';
+import {Book, DamageLogger, Author, Librarian} from './interfaces';
+import {UniversityLibrarian, ReferenceItem ,Encyclopedia}  from './classes';
 
-function GetAllBooks() : Array<any>{
+function GetAllBooks() : Book[]{
     let books = [
         {id : 1, title : 'Ulysses', author: 'James Joyce', available:true, category:Category.Fiction},
         {id : 2, title : 'A Farewell to Arms', author: 'Ernest Hemingway', available:false, category:Category.Fiction},
         {id : 3, title : 'I Know Why the Caged Bird Sings', author: 'Maya Angelou', available:true, category:Category.Poetry},
-        {id : 4, title : 'Moby Dick', author: 'Herman MelVille', available:true, category:Category.Fiction}
+        {id : 4, title : 'Moby Dick', author: 'Herman Melville', available:true, category:Category.Fiction}
     ]
 
     return books;
 }
 
-function LogFirstBookAvailable(books):void{
+function LogFirstBookAvailable(books : Book[] = GetAllBooks()):void{
 
     let numberOfBooks : number = books.length;
     let firstAvailable: string = '';
 
     for(let currentBook of books){
        if (currentBook.available == true) {
-            firstAvailable = currentBook.Title;
+            firstAvailable = currentBook.title;
        }
     }
 
@@ -26,7 +28,7 @@ function LogFirstBookAvailable(books):void{
     console.log('First Available Book : ' + firstAvailable);
 }
 
-function GetBookTitlesByCategory(categoryFilter : Category) : Array<string>{
+function GetBookTitlesByCategory(categoryFilter : Category = Category.Fiction) : string[]{
     console.log('Getting Books in category : ' + Category[categoryFilter]);
 
     const allBooks = GetAllBooks();
@@ -63,16 +65,52 @@ function CreateCustomer(name : string, age? : number, city? : string){
         console.log('City : ' + city);
 }
 
+function CheckoutBooks(customer:string, ...bookIds : number[]) : string[]{
+    console.log("Checking out books for " + customer);
+
+    let booksCheckedOut : string[] = [];
+
+    bookIds.forEach(id => {
+        let book = GetBookById(id);
+        if (book.available === true){
+            booksCheckedOut.push(book.title);
+        }
+    });
+
+    return booksCheckedOut;
+}
+
+function GetTitles(author :string): string[];
+function GetTitles(available:boolean):string[];
+function GetTitles(bookProperty:any):string[]{
+    const allBooks = GetAllBooks();
+    const foundTitles : string[] = [];
+
+    if (typeof bookProperty == 'string'){
+        for(let currentBook of allBooks){
+            if (currentBook.author === bookProperty){
+                foundTitles.push(currentBook.title);
+            }
+        }
+    }
+    else if (typeof bookProperty == 'boolean'){
+        for(let currentBook of allBooks){
+            if (currentBook.available === bookProperty){
+                foundTitles.push(currentBook.title);
+            }
+        }
+    }
+    return foundTitles;
+}
+
+function  PrintBook(book: Book):void{
+    console.log(book.title + ' by ' + book.author);
+}
+
 /* ----------------------------------------------------------------- */
 
-CreateCustomer("Suman",null,"Bothell");
-
-// let IdGenerator : (name : string, id : number) => string;
-// IdGenerator = (name: string, id:number) => { return id + name};
-
-// let myId = IdGenerator("Suman", 20);
-// console.log(myId);
-
-// const fictionBooks = GetBookTitlesByCategory(Category.Fiction);
-// fictionBooks.forEach((title, idx) => console.log(++idx + ' - ' + title));
+let refItem : ReferenceItem = new Encyclopedia('Updated Facts and Figures',2002, 10);
+refItem.Publisher = "Hello";
+refItem.printItem();
+refItem.printCitation();
 
