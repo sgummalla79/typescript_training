@@ -1,5 +1,3 @@
-/// <reference path="../../node_modules/@types/lodash/index.d.ts" />
-
 import { Category } from './enums';
 import { Book, Logger, Author, Librarian, Magazine } from './interfaces';
 import { UniversityLibrarian, ReferenceItem }  from './classes';
