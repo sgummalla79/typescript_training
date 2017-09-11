@@ -1,6 +1,9 @@
-import {Category} from './enums';
-import {Book, DamageLogger, Author, Librarian} from './interfaces';
-import {UniversityLibrarian, ReferenceItem ,Encyclopedia}  from './classes';
+import { Category } from './enums';
+import { Book, Logger, Author, Librarian, Magazine } from './interfaces';
+import { UniversityLibrarian, ReferenceItem }  from './classes';
+import { CalculateLateFee as CalcFee, MaxBooksAllowed, Purge } from './lib/utilityFunctions';
+import Encyclopedia from './encyclopedia';
+import Shelf from './shelf';
 
 function GetAllBooks() : Book[]{
     let books = [
@@ -109,8 +112,30 @@ function  PrintBook(book: Book):void{
 
 /* ----------------------------------------------------------------- */
 
-let refItem : ReferenceItem = new Encyclopedia('Updated Facts and Figures',2002, 10);
-refItem.Publisher = "Hello";
-refItem.printItem();
-refItem.printCitation();
+let inventory : Array<Book> = [
+    {id : 10, title : 'The C Programming Language', author: 'K & R', available:true, category:Category.Software},
+    {id : 11, title : 'Code Complete', author: 'Steve McConnell', available:true, category:Category.Software},
+    {id : 12, title : '8-Bit Graphics with Cobol', author: 'A. B.', available:true, category:Category.Software},
+    {id : 13, title : 'Cool autoexec.bat Scripts', author: 'C. D.', available:true, category:Category.Software}
+]
 
+// let purgedBooks : Array<Book> = Purge(inventory);
+// purgedBooks.forEach((item) => console.log(item.title));
+
+let bookShelf : Shelf<Book> = new Shelf();
+inventory.forEach((book) => bookShelf.add(book));
+
+let firstBook : Book = bookShelf.getFirst();
+console.log(firstBook.title);
+
+let magazines : Array<Magazine> = [
+    {title:'Programming Language Monthly', publisher:'Code Mags'},
+    {title:'Literary Fiction Quarterly', publisher:'College Press'},
+    {title:'FIve Points', publisher:'GSU'}
+]
+
+let magazineShelf : Shelf<Magazine> = new Shelf<Magazine>();
+magazines.forEach((magazine) => magazineShelf.add(magazine));
+
+let firstMagazine : Magazine = magazineShelf.getFirst();
+console.log(firstMagazine.title);
