@@ -13,17 +13,6 @@
                 "kind": "build",
                 "isDefault": true
             }
-        },
-        {
-            "type": "typescript",
-            "tsconfig": ".scripts\\namespaces\\tsconfig.json",
-            "problemMatcher": [
-                "$tsc"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
         }
     ]
 }

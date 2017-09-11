@@ -1,9 +1,12 @@
-import { Category } from './enums';
+/// <reference path="../../node_modules/@types/lodash/index.d.ts" />
+
+import { Category } from 'enums';
 import { Book, Logger, Author, Librarian, Magazine } from './interfaces';
 import { UniversityLibrarian, ReferenceItem }  from './classes';
 import { CalculateLateFee as CalcFee, MaxBooksAllowed, Purge } from './lib/utilityFunctions';
 import Encyclopedia from './encyclopedia';
 import Shelf from './shelf';
+import * as _ from 'lodash';
 
 function GetAllBooks() : Book[]{
     let books = [
@@ -139,3 +142,6 @@ magazines.forEach((magazine) => magazineShelf.add(magazine));
 
 let firstMagazine : Magazine = magazineShelf.getFirst();
 console.log(firstMagazine.title);
+
+let snakeCaseTitle = _.snakeCase('For Whom the Bell Tolls');
+console.log(snakeCaseTitle);

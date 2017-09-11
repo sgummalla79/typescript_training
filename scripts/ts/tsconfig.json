@@ -2,12 +2,9 @@
     "compilerOptions": {
         "alwaysStrict" : true,
         "outDir": "../js/",
-        "sourceMap": true,
+        "sourceMap": false,
         "watch": true,
         "target": "ES5"
     },
-    "compileOnSave": true,
-    "include": [
-        "./**/*.ts"
-    ]
+    "compileOnSave": true
 }

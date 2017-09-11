@@ -1,0 +1,23 @@
+{
+  "name": "typescript_training",
+  "version": "1.0.0",
+  "description": "typescript_training",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sgummalla79/typescript_training.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sgummalla79/typescript_training/issues"
+  },
+  "homepage": "https://github.com/sgummalla79/typescript_training#readme",
+  "dependencies": {
+    "@types/lodash": "^4.14.74",
+    "lodash": "^4.17.4"
+  }
+}
